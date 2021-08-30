@@ -4,7 +4,6 @@
 
 
 int main() {
-    /*
     DBTree tree;
     tree.testAufgabe();
 
@@ -14,7 +13,7 @@ int main() {
 
     std::cout << "Der Neue Aal:" << std::endl;
     neuerAal.print(neuerAal.getRoot());
-    */
+
     DBinSearchTree d;
 
 

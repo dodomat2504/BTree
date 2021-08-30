@@ -50,36 +50,38 @@ protected:
 public:
     DBTree(Knoten* rootNode = nullptr, const bool isSubTree = false): root(rootNode), isSubTree(isSubTree) {}
 
-    DBTree(const DBTree& tree): root(nullptr) {
-        this->root = copyRecursively(tree.getRoot());
-    }
+    DBTree(const DBTree& tree): root(nullptr) {this->root = copyRecursively(tree.getRoot());}
 
-    ~DBTree() {
-        if (!isSubTree) deleteAllNodes(root);
-    }
+    ~DBTree() {if (!isSubTree) deleteAllNodes(root);}
 
     Knoten* getRoot() const {return root;}
 
     bool empty(Knoten* node) const {return node == nullptr;}
+
     std::string value(Knoten* node) const {
         if (node != nullptr) return node->getData();
         else throw std::invalid_argument("Parameter 'node' is a nullpointer!");
     }
+
     Knoten* left(Knoten* node) const {
         if (node != nullptr) return node->getLeft();
         else return nullptr;
     }
+
     Knoten* right(Knoten* node) const {
         if (node != nullptr) return node->getRight();
         else return nullptr;
     }
+
     Knoten* create() {return nullptr;}
+
     void print(Knoten* node) const {
         if (node == nullptr) return;
         print(left(node));
         std::cout << "Nummer: " << node->getID() << ", Text: '" << node->getData() << "'" << std::endl;
         print(right(node));
     }
+
     Knoten* node(Knoten* l, const std::string& data, Knoten* r) {return new Knoten(data, l, r);}
 
     void testAufgabe() {

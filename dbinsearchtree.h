@@ -10,25 +10,19 @@ private:
     int maxTiefe;
 
     void ebenenweiseAusgabe(const int ebene, int tiefeCounter = 0) const {
-            if (tiefeCounter == ebene) {
-                std::cout << root->getData() << " ";
-            } else {
-                if (root->getLeft() != nullptr) {
-                    DBinSearchTree(root->getLeft(), true).ebenenweiseAusgabe(ebene, tiefeCounter+1);
-                } else {
-                    for (int i = 0; i < pow(2, ebene - tiefeCounter - 1); i++) {
-                        std::cout << "|X| ";
-                    }
-                }
-                if (root->getRight() != nullptr) {
-                    DBinSearchTree(root->getRight(), true).ebenenweiseAusgabe(ebene, tiefeCounter+1);
-                } else {
-                    for (int i = 0; i < pow(2, ebene - tiefeCounter - 1); i++) {
-                        std::cout << "|X| ";
-                    }
-                }
-            }
+        if (tiefeCounter == ebene) std::cout << root->getData() << " ";
+        else {
+            if (root->getLeft() != nullptr)
+                DBinSearchTree(root->getLeft(), true).ebenenweiseAusgabe(ebene, tiefeCounter+1);
+
+            else for (int i = 0; i < pow(2, ebene - tiefeCounter - 1); i++) std::cout << "|X| ";
+
+            if (root->getRight() != nullptr)
+                DBinSearchTree(root->getRight(), true).ebenenweiseAusgabe(ebene, tiefeCounter+1);
+
+            else for (int i = 0; i < pow(2, ebene - tiefeCounter - 1); i++) std::cout << "|X| ";
         }
+    }
 
 public:
     DBinSearchTree(Knoten* r = nullptr, const bool isSubTree = false): DBTree(r, isSubTree), maxTiefe(0) {}
@@ -63,7 +57,7 @@ public:
         std::cout << "Maxtiefe: " << maxTiefe << std::endl;
     }
 
-    /*
+    // unused, since it has no check for the maxTiefe
     void insertRec(const std::string& data, Knoten* node) {
         if (node == nullptr) {
             root = new Knoten(data);
@@ -77,7 +71,6 @@ public:
             else insertRec(data, node->getRight());
         }
     }
-    */
 
     void EbenenweiseAusgabe() const {
         for (int i = 0; i < maxTiefe; i++) {
